@@ -14,7 +14,10 @@ public class ArbolBinarioDeBusqueda {
     private Nodo root;
     private int size;
     
-    //constructor
+    /**
+     * Constructor de la clase ArbolBinarioDeBusqueda.
+     * Inicializa un árbol vacío con la raíz nula y tamaño cero.
+     */
     public ArbolBinarioDeBusqueda() {
         this.root = null;
         this.size = 0;
@@ -44,6 +47,15 @@ public class ArbolBinarioDeBusqueda {
         this.root = null;
     }
     
+    /**
+     * Método auxiliar recursivo para insertar un nodo en el árbol.
+     * Los nodos se ordenan primero por frecuencia (menor a la izquierda, mayor a la derecha),
+     * y luego por el triplete alfabéticamente en caso de frecuencias iguales.
+     *
+     * @param actual El nodo actual que se está evaluando en la recursión.
+     * @param nuevoNodo El nodo que se desea insertar.
+     * @return El nodo actual después de la inserción, o el nuevo nodo si el lugar es nulo.
+     */
     private Nodo insertarRecursivo(Nodo actual, Nodo nuevoNodo) {
         if (actual == null) {
             size++; 
@@ -64,7 +76,17 @@ public class ArbolBinarioDeBusqueda {
         }
         return actual;
     }
-
+    
+    /**
+     * Inserta un nuevo patrón de ADN en el árbol.
+     * Si el patrón ya existe con la misma frecuencia y triplete, no se inserta duplicado.
+     *
+     * @param nuevoPatron El objeto patronADN a insertar.
+     */
+    public void insertar(patronADN nuevoPatron) {
+        Nodo nuevoNodo = new Nodo(nuevoPatron);
+        this.root = insertarRecursivo(this.root, nuevoNodo);
+    }
 
     /**
      * Busca un patrón de ADN específico en el árbol por su triplete y frecuencia.
