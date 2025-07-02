@@ -128,7 +128,7 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
                 System.getLogger(Busqueda_Archivo.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             }
             this.setVisible(false);
-            Ventana1 v1 = new Ventana1(cadena);
+            Menu v1 = new Menu(cadena);
             }
             
         }

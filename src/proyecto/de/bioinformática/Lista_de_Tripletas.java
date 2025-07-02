@@ -6,14 +6,14 @@ package proyecto.de.bioinformática;
 
 /**
  *
- * @author vyckh
+ * @author Diego Arreaza y Vyckhy Sarmiento
  */
-public class duende2 extends javax.swing.JFrame {
+public class Lista_de_Tripletas extends javax.swing.JFrame {
 
     /**
-     * Creates new form duende2
+     * Creates new form chocolate1
      */
-    public duende2() {
+    public Lista_de_Tripletas() {
         initComponents();
     }
 
@@ -59,20 +59,21 @@ public class duende2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(duende2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(duende2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(duende2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(duende2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new duende2().setVisible(true);
+                new Lista_de_Tripletas().setVisible(true);
             }
         });
     }

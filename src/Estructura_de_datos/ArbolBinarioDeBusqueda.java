@@ -50,7 +50,6 @@ public class ArbolBinarioDeBusqueda {
     /**
      * Método auxiliar recursivo para insertar un nodo en el árbol.
      * Los nodos se ordenan primero por frecuencia (menor a la izquierda, mayor a la derecha),
-     * y luego por el triplete alfabéticamente en caso de frecuencias iguales.
      *
      * @param actual El nodo actual que se está evaluando en la recursión.
      * @param nuevoNodo El nodo que se desea insertar.
@@ -61,19 +60,11 @@ public class ArbolBinarioDeBusqueda {
             size++; 
             return nuevoNodo;
         }
-        int comparacionFrecuencia = ((patronADN) nuevoNodo.getData()).getFrecuencia() -((patronADN) actual.getData()).getFrecuencia();
-        if (comparacionFrecuencia < 0) {
-        actual.setIzq(insertarRecursivo(actual.getIzq(), nuevoNodo));
-        } else if (comparacionFrecuencia > 0) {
-            actual.setDer(insertarRecursivo(actual.getDer(), nuevoNodo));
-        } else {
-            int comparacionTriplete = ((patronADN) nuevoNodo.getData()).getTriplete().compareTo(  ((patronADN) actual.getData()).getTriplete());
-            if (comparacionTriplete < 0) {
-                actual.setIzq(insertarRecursivo(actual.getIzq(), nuevoNodo));
-            } else if (comparacionTriplete > 0) {
-                actual.setDer(insertarRecursivo(actual.getDer(), nuevoNodo));
-            }
-        }
+        if (((patronADN) actual.getData()).getFrecuencia() < ((patronADN) nuevoNodo.getData()).getFrecuencia()) {
+            actual.setDer(insertarRecursivo(actual.getIzq(), nuevoNodo));
+        } else if (((patronADN) actual.getData()).getFrecuencia() >= ((patronADN) nuevoNodo.getData()).getFrecuencia()) {
+            actual.setIzq(insertarRecursivo(actual.getDer(), nuevoNodo));
+        } 
         return actual;
     }
     

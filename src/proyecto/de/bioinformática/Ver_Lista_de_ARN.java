@@ -6,14 +6,14 @@ package proyecto.de.bioinformática;
 
 /**
  *
- * @author vyckh
+ * @author Diego Arreaza y Vyckhy Sarmiento
  */
-public class chocolate1 extends javax.swing.JFrame {
+public class Ver_Lista_de_ARN extends javax.swing.JFrame {
 
     /**
-     * Creates new form chocolate1
+     * Creates new form lol3
      */
-    public chocolate1() {
+    public Ver_Lista_de_ARN() {
         initComponents();
     }
 
@@ -59,20 +59,21 @@ public class chocolate1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(chocolate1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lista_de_ARN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(chocolate1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lista_de_ARN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(chocolate1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lista_de_ARN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(chocolate1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ver_Lista_de_ARN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new chocolate1().setVisible(true);
+                new Ver_Lista_de_ARN().setVisible(true);
             }
         });
     }
