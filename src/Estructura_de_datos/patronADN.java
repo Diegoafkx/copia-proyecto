@@ -38,42 +38,75 @@ public class patronADN {
     }
 
     // --- Getters (métodos para obtener los valores de los atributos) ---
+    
+    /**
+     * Obtiene la secuencia de 3 nucleótidos del triplete de ADN.
+     * @return El triplete de ADN como String.
+     */
     public String getTriplete() {
         return triplete;
     }
-
+    /**
+     * Obtiene la frecuencia (número de ocurrencias) de este triplete en la cadena de ADN.
+     * @return La frecuencia del triplete.
+     */
     public int getFrecuencia() {
         return frecuencia;
     }
-
+    /**
+     * Obtiene la lista de posiciones (índices) donde este triplete aparece en la cadena de ADN.
+     * @return La {@link Lista} que contiene las posiciones.
+     */
     public Lista getPosiciones() {
         return posiciones;
     }
-
+    /**
+     * Obtiene el nombre completo del aminoácido codificado por este triplete.
+     * @return El nombre del aminoácido (ej., "Fenilalanina", "Parada", "Desconocido").
+     */
     public String getAminoacido() {
         return aminoacido;
     }
-
+    /**
+     * Obtiene la abreviatura de tres letras del aminoácido codificado.
+     * @return La abreviatura de tres letras (ej., "Phe", "STOP", "N/A").
+     */
     public String getAbreviatura3() {
         return abreviatura3;
     }
-
+    /**
+     * Obtiene la abreviatura de una letra del aminoácido codificado.
+     * @return La abreviatura de una letra (ej., "F", "*", "?").
+     */
     public String getAbreviatura1() {
         return abreviatura1;
     }
-
+    /**
+     * Establece la frecuencia (número de ocurrencias) de este triplete.
+     * @param frecuencia La nueva frecuencia del triplete.
+     */
     public void setFrecuencia(int frecuencia) {
         this.frecuencia = frecuencia;
     }
-
+    /**
+     * Establece el nombre completo del aminoácido codificado.
+     * @param aminoacido El nombre del aminoácido.
+     */
     public void setAminoacido(String aminoacido) {
         this.aminoacido = aminoacido;
     }
-
+    /**
+     * Establece la abreviatura de tres letras del aminoácido codificado.
+     * @param abreviatura3 La abreviatura de tres letras.
+     */
     public void setAbreviatura3(String abreviatura3) {
         this.abreviatura3 = abreviatura3;
     }
-
+    
+    /**
+     * Establece la abreviatura de una letra del aminoácido codificado.
+     * @param abreviatura1 La abreviatura de una letra.
+     */
     public void setAbreviatura1(String abreviatura1) {
         this.abreviatura1 = abreviatura1;
     }

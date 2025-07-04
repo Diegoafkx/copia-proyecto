@@ -273,6 +273,29 @@ public class ArbolBinarioDeBusqueda {
             inOrderTraversal(nodo.getDer(), sb);
         }
     }
+    /**
+ * Realiza un recorrido in-orden y devuelve una lista de Strings con la información de los patrones.
+ * @return Lista de Strings en formato: "Triplete: [triplete], Frecuencia: [frecuencia]".
+ */
+public Lista recorridoInOrdenParaGUI() {
+    Lista resultado = new Lista();
+    inOrdenRecursivoGUI(this.root, resultado);
+    return resultado;
+}
 
+// Método auxiliar recursivo
+private void inOrdenRecursivoGUI(Nodo nodo, Lista resultado) {
+    if (nodo != null) {
+        inOrdenRecursivoGUI(nodo.getIzq(), resultado); // Recorre subárbol izquierdo
+        
+        patronADN patron = (patronADN) nodo.getData();
+        String infoPatron = "Triplete: " + patron.getTriplete() + 
+                           ", Frecuencia: " + patron.getFrecuencia();
+        resultado.Insertar(new Nodo(infoPatron)); // Agrega el patrón formateado a la lista
+        
+        inOrdenRecursivoGUI(nodo.getDer(), resultado); // Recorre subárbol derecho
+    }
+}
+    
 }
 

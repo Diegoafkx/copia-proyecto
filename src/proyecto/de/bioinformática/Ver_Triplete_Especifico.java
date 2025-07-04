@@ -6,34 +6,23 @@ package proyecto.de.bioinformática;
 
 /**
  *
- * @author Diego Arreaza y Vyckhy Sarmiento
+ * @author Windows 10 Pro
  */
-    public class Lista_de_Tripletas extends javax.swing.JFrame {
+public class Ver_Triplete_Especifico extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Ver_Triplete_Especifico.class.getName());
     
     private static Menu menu;
     /**
-     * Creates new form chocolate1
-     * @param m
+     * Creates new form Ver_Triplete_Especifico
      */
-    public Lista_de_Tripletas(Menu m) {
-        menu = m;
+    public Ver_Triplete_Especifico(Menu m) {
+        menu  = m;
         initComponents();
+        tripleta.setText("");
+        frecuencia_tripleta.setText("");
+        posiciones_tripleta.setText("");
     }
-    
-//    private void cargarListaTripletas() {
-//    ArbolBinarioDeBusqueda arbol = menu.get_Arbol(); // Obtiene el árbol desde Menu
-//    Lista patronesOrdenados = arbol.recorridoInOrdenParaGUI(); // Recorre in-orden
-//    
-//    // Convierte la Lista a un arreglo para el JList
-//    DefaultListModel<String> modelo = new DefaultListModel<>();
-//    Nodo actual = patronesOrdenados.getpFirst();
-//    while (actual != null) {
-//        modelo.addElement(actual.getData().toString()); // Añade cada patrón como String
-//        actual = actual.getpNext();
-//    }
-//    
-//    jList1.setModel(modelo); // Asigna el modelo al JList
-//}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,11 +38,14 @@ package proyecto.de.bioinformática;
         Back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        Frecuencia = new javax.swing.JLabel();
+        frecuencia_tripleta = new javax.swing.JLabel();
+        Posiciones = new javax.swing.JLabel();
+        posiciones_tripleta = new javax.swing.JLabel();
+        Tripleta = new javax.swing.JLabel();
+        tripleta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(255, 255, 255));
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -78,30 +70,59 @@ package proyecto.de.bioinformática;
 
         jList1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "tripleta | Frecuencia | Posicion", "tripleta2 | Frecuencia | Posicion", "tripleta3 | Frecuencia | Posicion" };
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 510, 520));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 140, 520));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        Frecuencia.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Frecuencia.setForeground(new java.awt.Color(0, 0, 0));
+        Frecuencia.setText("Frecuencia:");
+        jPanel1.add(Frecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 220, -1));
+
+        frecuencia_tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        frecuencia_tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        frecuencia_tripleta.setText("Aqui saldra la frecuencia");
+        jPanel1.add(frecuencia_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 370, -1));
+
+        Posiciones.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Posiciones.setForeground(new java.awt.Color(0, 0, 0));
+        Posiciones.setText("Posiciones:");
+        jPanel1.add(Posiciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 220, -1));
+
+        posiciones_tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        posiciones_tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        posiciones_tripleta.setText("Aqui saldra las posiciones");
+        jPanel1.add(posiciones_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 370, -1));
+
+        Tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        Tripleta.setText("Tripleta Seleccionado:");
+        jPanel1.add(Tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 250, -1));
+
+        tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        tripleta.setText("Aqui saldra la tripleta");
+        jPanel1.add(tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 370, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 680));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         this.dispose();
         menu.back();
     }//GEN-LAST:event_BackActionPerformed
-
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,31 +140,26 @@ package proyecto.de.bioinformática;
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Lista_de_Tripletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Lista_de_Tripletas(menu).setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new Ver_Triplete_Especifico(menu).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Exit;
+    private javax.swing.JLabel Frecuencia;
+    private javax.swing.JLabel Posiciones;
+    private javax.swing.JLabel Tripleta;
+    private javax.swing.JLabel frecuencia_tripleta;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel posiciones_tripleta;
+    private javax.swing.JLabel tripleta;
     // End of variables declaration//GEN-END:variables
 }

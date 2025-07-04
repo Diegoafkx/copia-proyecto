@@ -29,8 +29,10 @@ public class Ver_Max_Min extends javax.swing.JFrame {
     private static Menu menu; 
     
     public Ver_Max_Min(Menu menu) {
+        this.menu = menu;
         initComponents();
         arbol = menu.get_Arbol();
+        
     }
 
     /**
@@ -115,7 +117,7 @@ public class Ver_Max_Min extends javax.swing.JFrame {
                 RegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, -1, -1));
+        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 458, -1, 30));
 
         pack();
         setLocationRelativeTo(null);
@@ -123,6 +125,7 @@ public class Ver_Max_Min extends javax.swing.JFrame {
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
     private void ResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResultadoActionPerformed
@@ -169,6 +172,8 @@ public class Ver_Max_Min extends javax.swing.JFrame {
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        menu.back();
     }//GEN-LAST:event_RegresarActionPerformed
 
     /**

@@ -45,6 +45,7 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
         Buscar = new javax.swing.JButton();
         getDireccion = new javax.swing.JTextField();
         Siguiente = new javax.swing.JButton();
+        Exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -76,6 +77,15 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
+
+        Exit.setBackground(new java.awt.Color(255, 0, 51));
+        Exit.setText("X");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 70, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -140,6 +150,11 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getDireccionActionPerformed
 
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +182,7 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
+    private javax.swing.JButton Exit;
     private javax.swing.JButton Siguiente;
     private javax.swing.JTextField getDireccion;
     private javax.swing.JPanel jPanel1;
