@@ -7,7 +7,7 @@ import Estructura_de_datos.ArbolBinarioDeBusqueda;
 import Estructura_de_datos.patronADN;
 import Estructura_de_datos.Nodo;
 import java.util.Enumeration;
-import java.util.Hashtable;
+import Estructura_de_datos.Hashtable;
 /**
  *
  * @author Diego Arreaza y Vyckhy Sarmiento
@@ -22,11 +22,8 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Hashtable que tiene de key la tripleta y de valor un dato patronADN 
      */
-    private Hashtable<String, patronADN> tripleta;
-    /**
-     * Matriz que contiene de materna organizada los keys del hashtable
-     */
-    private String[] tripleta_ordenada;
+    private Hashtable tripleta;
+
     /**
      * 
      */
@@ -39,21 +36,23 @@ public class Menu extends javax.swing.JFrame {
         cadena = c;
         initComponents();
         this.CrearhashTable();
-        this.organizar_posiciones();
         this.Crear_arbol_binario_de_busqueda();
         this.setVisible(true);
     }
     
+    public Hashtable get_tablahash(){
+        return tripleta;
+    }
     /**
      * Metodo que se encarga de crear el hashtable con las tripletas de adn
      * Revisa si la tripleta se encuentra dentro del Hash, si se encuentraa se aumenta su frecuencia y se coloca la posicion y si no se agrega en el hastable
      */
     private void CrearhashTable(){
-        tripleta = new Hashtable<>();
+        tripleta = new Hashtable();
         for (int i = 0; i+2 < cadena.length(); i=i+3) {
             
             String aux = cadena.substring(i, i + 3);
-            if (tripleta.containsKey(aux)) {
+            if (tripleta.contiene_la_clave(aux)) {
                 tripleta.get(aux).agregarPosicion(i);
                 tripleta.get(aux).incrementarFrecuencia();
             }else{
@@ -64,62 +63,21 @@ public class Menu extends javax.swing.JFrame {
     }
     
     /**
-     * metodo que se encarga de organizar los keys de la hashtable por orden de frecuendia en una matriz
-     */
-    private void organizar_posiciones(){
-        tripleta_ordenada = new String[tripleta.size()];
-        
-        int i = 0;
-        int x =0;
-        Enumeration<String> keys = tripleta.keys();
-        String key = keys.nextElement();
-        int menor = ((patronADN) tripleta.get(key)).getFrecuencia();
-        String adn = key;
-        
-        while(tripleta_ordenada[tripleta.size()-1] == null){  
-            
-            if(i == tripleta.size()-1){
-                
-                keys = tripleta.keys();
-                tripleta_ordenada[x] = adn;
-                x++;
-                i=0;
-                menor=Integer.MAX_VALUE;
-            }
-            
-            key = keys.nextElement();
-            if(((patronADN) tripleta.get(key)).getFrecuencia()<= menor){
-                 boolean buscador = false;
-                for (int j = 0; tripleta_ordenada[j]!=null; j++) {
-                    if (tripleta_ordenada[j].equals(key)) {
-                       buscador = true;
-                       break;
-                    }
-                }
-                if (buscador ==false) {
-                    menor = ((patronADN) tripleta.get(key)).getFrecuencia();
-                    adn = key;
-                }
-            }
-            i++;
-        }
-    }
-    
-    /**
      * Metodo que se encarga de crear el arbol binario de busqueda
      */
     private void Crear_arbol_binario_de_busqueda(){
         arbol = new ArbolBinarioDeBusqueda();
         int posicion_raiz = (int) (tripleta.size()-1)/2;
-        Nodo aux = new Nodo(tripleta.get(tripleta_ordenada[posicion_raiz]));
+        Nodo aux = new Nodo(tripleta.get(tripleta.get_claves()[posicion_raiz]));
         arbol.setRoot(aux);
-        Enumeration<String> keys = tripleta.keys();
-        String key = keys.nextElement();
+        int j = 0;
+        String key = tripleta.get_claves()[j];
         for (int i = 1; i < tripleta.size(); i++) {
-            if(key.equals(tripleta_ordenada[posicion_raiz])!= true){
-                arbol.insertar(tripleta.get(tripleta_ordenada[i]));
+            if(key.equals(tripleta.get_claves()[posicion_raiz])!= true){
+                arbol.insertar(tripleta.get(tripleta.get_claves()[i]));
             }
-            key = keys.nextElement();
+            j++;
+            key = tripleta.get_claves()[j];
         }
     }
     
@@ -186,23 +144,25 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Lista_TripletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista_TripletasActionPerformed
-    Lista_de_Tripletas nuevaVentana = new Lista_de_Tripletas();
+    Lista_de_Tripletas nuevaVentana = new Lista_de_Tripletas(this);
     nuevaVentana.setVisible(true);
+    this.setVisible(false); 
        
     }//GEN-LAST:event_Lista_TripletasActionPerformed
 
     private void Ver_Max_MinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ver_Max_MinActionPerformed
     Ver_Max_Min nuevaVentana = new Ver_Max_Min(this); 
     nuevaVentana.setVisible(true);
-    this.dispose(); 
+    this.setVisible(false); 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_Ver_Max_MinActionPerformed
 
     private void Lista_AminoacidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista_AminoacidosActionPerformed
-        Ver_Lista_de_ARN ventana = new Ver_Lista_de_ARN();
+        Ver_Lista_de_ARN ventana = new Ver_Lista_de_ARN(this);
         ventana.setVisible(true);
-
+        this.setVisible(false); 
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_Lista_AminoacidosActionPerformed
 

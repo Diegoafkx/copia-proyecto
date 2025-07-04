@@ -31,8 +31,9 @@ public class patronADN {
     public patronADN(String triplete, int posicionInicial) {
         this.triplete = triplete;
         this.frecuencia = 1; 
-        this.posiciones = new Lista(); 
-        this.posiciones.Insertar(posicionInicial); 
+        this.posiciones = new Lista();
+        Nodo aux = new Nodo(posicionInicial);
+        this.posiciones.Insertar(aux); 
         this.convertirAaminoacido(triplete); 
     }
 
@@ -89,7 +90,8 @@ public class patronADN {
      * @param posicion La nueva posición (índice) donde se encontró el patrón.
      */
     public void agregarPosicion(int posicion) {
-        this.posiciones.Insertar(posicion); 
+        Nodo aux = new Nodo(posicion);
+        this.posiciones.Insertar(aux); 
     }
     
     /**

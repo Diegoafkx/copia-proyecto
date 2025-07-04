@@ -69,16 +69,16 @@ public class Lista {
     }
     
     //Metodo para obtener el valor de un nodo en una determinada posición
-    public Object AccederAlValor(int posicion){
+    public Nodo AccederAlValor(int posicion){
         if(posicion>=0 && posicion<size){
             if (posicion == 0) {
-                return pFirst.getData();
+                return pFirst;
             }else{
                 Nodo aux = pFirst;
                 for (int i = 0; i < posicion; i++) {
                     aux = aux.getpNext();
                 }
-                return aux.getData();
+                return aux;
             }
         }
         return null;
@@ -99,18 +99,17 @@ public class Lista {
     
     
     //inseratar al final de la lista
-    public Nodo Insertar(Object dato){
-        Nodo nuevo = new Nodo(dato);
+    public void Insertar(Nodo nodo){
         if (EsVacio()){
-            pFirst = nuevo;
-            pLast = nuevo; 
+            pFirst = nodo;
+            pLast = nodo; 
         }else{
             Nodo aux = pFirst;
             while (aux.getpNext() != null){
                 aux = aux.getpNext();
-            }aux.setpNext(nuevo);
-        }size++;
-        return nuevo;   
+            }aux.setpNext(nodo);
+        }
+        size++;
     }
 
     //Funcion para eliminar al inicio
@@ -148,22 +147,19 @@ public class Lista {
     
     
     // Funcion para buscar un elemento en la lista, si lo encuentra es true
-    public boolean buscar(Object referencia){
+    public boolean buscar(String referencia){
         Nodo aux = pFirst;
-        boolean encontrado = false;
-        while(aux != null && encontrado != true){
-            if (referencia == aux.getData()){ 
-                encontrado = true;
+        while(aux != null){
+            if (referencia.equals(aux.clave) ){ 
+                return true;
             }
-            else{
-                aux = aux.getpNext();
-            }
+            aux = aux.pNext;
         }
-        return encontrado;
+        return false;
     }
     
     //Consulta la posición de un elemento en la lista
-    public int Posicion(Object referencia){
+    public int Posicion(String referencia){
         if (buscar(referencia)) {
             Nodo aux = pFirst;
             int cont = 0;
@@ -179,38 +175,38 @@ public class Lista {
    
     
  // Función Próximo - devuelve el siguiente nodo usando posición, hay que usar getdato al lado
-public Nodo Proximo(int posicion) {
-    if (posicion >= 0 && posicion < size - 1) { // Validar que no sea la última posición
-        Nodo actual = pFirst;
-        for (int i = 0; i < posicion + 1; i++) { // ir a la posición siguiente
-            actual = actual.getpNext();
-        }
-        return actual;
-    } else {
-        return null; // Si es la última posición o posición inválida
-    }
-}
-
-// Insertar después de la posición especificada
-public void InsertarDespues(Object dato, int posicion) {
-    if (posicion >= 0 && posicion < size) {
-        Nodo pNew = new Nodo(dato);
-        
-        if (posicion == size - 1) { // Si es la última posición
-            pLast.setpNext(pNew);
-            pLast = pNew;
-            size++;
-        } else { // Si no es la última posición
-            Nodo nodoActual = pFirst;
-            for (int i = 0; i < posicion; i++) {
-                nodoActual = nodoActual.getpNext();
+    public Nodo Proximo(int posicion) {
+        if (posicion >= 0 && posicion < size - 1) { // Validar que no sea la última posición
+            Nodo actual = pFirst;
+            for (int i = 0; i < posicion + 1; i++) { // ir a la posición siguiente
+                actual = actual.getpNext();
             }
-            pNew.setpNext(nodoActual.getpNext());
-            nodoActual.setpNext(pNew);
-            size++;
+            return actual;
+        } else {
+            return null; // Si es la última posición o posición inválida
         }
     }
-}
+
+    // Insertar después de la posición especificada
+    public void InsertarDespues(Object dato, int posicion) {
+        if (posicion >= 0 && posicion < size) {
+            Nodo pNew = new Nodo(dato);
+
+            if (posicion == size - 1) { // Si es la última posición
+                pLast.setpNext(pNew);
+                pLast = pNew;
+                size++;
+            } else { // Si no es la última posición
+                Nodo nodoActual = pFirst;
+                for (int i = 0; i < posicion; i++) {
+                    nodoActual = nodoActual.getpNext();
+                }
+                pNew.setpNext(nodoActual.getpNext());
+                nodoActual.setpNext(pNew);
+                size++;
+            }
+        }
+    }
     
     //Metodo para editar el valor de un nodo en una posicion
     public void editarPorPosicion(int posicion , Object dato){
@@ -248,18 +244,4 @@ public void InsertarDespues(Object dato, int posicion) {
             size--;
         }
     }
-    
-    //pongo el dato, y despues lo cambio por el otro que quiero cambiar
-    public void editarPorReferencia(Object referencia, Object dato){
-        if (buscar(referencia)) {
-            Nodo aux = pFirst;
-            while(aux.getData() != referencia){
-                aux = aux.getpNext();
-            }
-            aux.setData(dato);
-        }
-    }
-    
-    
-    
 }

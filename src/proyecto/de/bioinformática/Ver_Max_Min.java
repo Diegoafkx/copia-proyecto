@@ -156,10 +156,10 @@ public class Ver_Max_Min extends javax.swing.JFrame {
         Resultado.setText("");
         switch (Frecuencia) {
             case "minimo":
-                Resultado.setText(arbol.patronMenosFrecuente().getTriplete());
+                Resultado.setText("El triplete menos frecuentado es "+arbol.patronMenosFrecuente().getTriplete()+" con "+arbol.patronMenosFrecuente().getFrecuencia()+" veces.");
                 break;
             case "maximo":
-                Resultado.setText(arbol.patronMasFrecuente().getTriplete());
+                Resultado.setText("El triplete mas frecuentado es "+arbol.patronMasFrecuente().getTriplete()+" con "+arbol.patronMasFrecuente().getFrecuencia()+" veces.");
                 break;
             default:
                 Resultado.setText("ERROR. No se ha ingresado que se desea obsservar");

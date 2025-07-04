@@ -13,12 +13,14 @@ public class Nodo <T> {
   
     //atributos del Nodo
     
-    private Nodo pNext;
-    private T data;
-    private Nodo izq;
-    private Nodo der;
+    protected Nodo pNext;
+    protected T data;
+    protected Nodo izq;
+    protected Nodo der;
+    protected Nodo Valor;
+    protected String clave;
     
-    //constructor para el arbol
+    //constructor
 
     /**
      *
@@ -64,8 +66,5 @@ public class Nodo <T> {
     public void setpNext(Nodo pNext) {
         this.pNext = pNext;
     }
-    
-    
-    
     
 }

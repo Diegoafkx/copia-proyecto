@@ -8,13 +8,17 @@ package proyecto.de.bioinformática;
  *
  * @author Diego Arreaza y Vyckhy Sarmiento
  */
-public class Lista_de_Tripletas extends javax.swing.JFrame {
-
+    public class Lista_de_Tripletas extends javax.swing.JFrame {
+    
+    private static Menu menu;
     /**
      * Creates new form chocolate1
+     * @param m
      */
-    public Lista_de_Tripletas() {
+    public Lista_de_Tripletas(Menu m) {
+        menu = m;
         initComponents();
+        frecuencia_tripleta.setText("");
     }
 
     /**
@@ -26,21 +30,88 @@ public class Lista_de_Tripletas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        Exit = new javax.swing.JButton();
+        Back = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        Frecuencia = new javax.swing.JLabel();
+        frecuencia_tripleta = new javax.swing.JLabel();
+        Posiciones = new javax.swing.JLabel();
+        posiciones_tripleta = new javax.swing.JLabel();
+        Tripleta = new javax.swing.JLabel();
+        tripleta = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Exit.setBackground(new java.awt.Color(204, 0, 0));
+        Exit.setText("X");
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 70, -1));
+
+        Back.setText("Regresar");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 650, 80, -1));
+
+        jList1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 140, 520));
+
+        Frecuencia.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Frecuencia.setForeground(new java.awt.Color(0, 0, 0));
+        Frecuencia.setText("Frecuencia:");
+        jPanel1.add(Frecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 220, -1));
+
+        frecuencia_tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        frecuencia_tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        frecuencia_tripleta.setText("Aqui saldra la frecuencia");
+        jPanel1.add(frecuencia_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 370, -1));
+
+        Posiciones.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Posiciones.setForeground(new java.awt.Color(0, 0, 0));
+        Posiciones.setText("Posiciones:");
+        jPanel1.add(Posiciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 220, -1));
+
+        posiciones_tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        posiciones_tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        posiciones_tripleta.setText("Aqui saldra las posiciones");
+        jPanel1.add(posiciones_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 370, -1));
+
+        Tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        Tripleta.setText("Tripleta Seleccionado:");
+        jPanel1.add(Tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 250, -1));
+
+        tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        tripleta.setText("Aqui saldra la tripleta");
+        jPanel1.add(tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 370, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +144,22 @@ public class Lista_de_Tripletas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Lista_de_Tripletas().setVisible(true);
+                new Lista_de_Tripletas(menu).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
+    private javax.swing.JButton Exit;
+    private javax.swing.JLabel Frecuencia;
+    private javax.swing.JLabel Posiciones;
+    private javax.swing.JLabel Tripleta;
+    private javax.swing.JLabel frecuencia_tripleta;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel posiciones_tripleta;
+    private javax.swing.JLabel tripleta;
     // End of variables declaration//GEN-END:variables
 }

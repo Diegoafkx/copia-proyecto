@@ -8,12 +8,15 @@ package proyecto.de.bioinformática;
  *
  * @author Diego Arreaza y Vyckhy Sarmiento
  */
-public class Ver_Lista_de_ARN extends javax.swing.JFrame {
-
+    public class Ver_Lista_de_ARN extends javax.swing.JFrame {
+    
+   private static Menu menu;
+    
     /**
      * Creates new form lol3
      */
-    public Ver_Lista_de_ARN() {
+    public Ver_Lista_de_ARN(Menu m) {
+        menu = m;
         initComponents();
     }
 
@@ -26,21 +29,146 @@ public class Ver_Lista_de_ARN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        Back = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        Primera = new javax.swing.JLabel();
+        frecuencia_tripleta = new javax.swing.JLabel();
+        tres_letras = new javax.swing.JLabel();
+        Una_Letras = new javax.swing.JLabel();
+        Aminoacido = new javax.swing.JLabel();
+        aminoacido = new javax.swing.JLabel();
+        Bases = new javax.swing.JLabel();
+        segunda = new javax.swing.JLabel();
+        Tercera = new javax.swing.JLabel();
+        tercera = new javax.swing.JLabel();
+        Segunda = new javax.swing.JLabel();
+        Tres_Letras = new javax.swing.JLabel();
+        Abreviatura = new javax.swing.JLabel();
+        una_letras1 = new javax.swing.JLabel();
+        Exit = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Back.setText("Regresar");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 650, 80, -1));
+
+        jList1.setBackground(new java.awt.Color(255, 255, 255));
+        jList1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jList1.setForeground(new java.awt.Color(0, 0, 0));
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 140, 520));
+
+        Primera.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Primera.setForeground(new java.awt.Color(0, 0, 0));
+        Primera.setText("Primera");
+        jPanel1.add(Primera, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, -1));
+
+        frecuencia_tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        frecuencia_tripleta.setForeground(new java.awt.Color(0, 0, 0));
+        frecuencia_tripleta.setText("primera");
+        jPanel1.add(frecuencia_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 90, -1));
+
+        tres_letras.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        tres_letras.setForeground(new java.awt.Color(0, 0, 0));
+        tres_letras.setText("3 letras");
+        jPanel1.add(tres_letras, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 560, 130, -1));
+
+        Una_Letras.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Una_Letras.setForeground(new java.awt.Color(0, 0, 0));
+        Una_Letras.setText("Abreviatura 1 Letras");
+        jPanel1.add(Una_Letras, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 500, 220, -1));
+
+        Aminoacido.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Aminoacido.setForeground(new java.awt.Color(0, 0, 0));
+        Aminoacido.setText("Aminoácidos Seleccionado:");
+        jPanel1.add(Aminoacido, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 310, -1));
+
+        aminoacido.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        aminoacido.setForeground(new java.awt.Color(0, 0, 0));
+        aminoacido.setText("Aqui saldra la Aminoacido");
+        jPanel1.add(aminoacido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 280, -1));
+
+        Bases.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Bases.setForeground(new java.awt.Color(0, 0, 0));
+        Bases.setText("Bases del Aminoácido");
+        jPanel1.add(Bases, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 250, -1));
+
+        segunda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        segunda.setForeground(new java.awt.Color(0, 0, 0));
+        segunda.setText("segunda");
+        jPanel1.add(segunda, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 100, -1));
+
+        Tercera.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Tercera.setForeground(new java.awt.Color(0, 0, 0));
+        Tercera.setText("Tercera");
+        jPanel1.add(Tercera, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, 90, -1));
+
+        tercera.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        tercera.setForeground(new java.awt.Color(0, 0, 0));
+        tercera.setText("tercera");
+        jPanel1.add(tercera, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, 90, -1));
+
+        Segunda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Segunda.setForeground(new java.awt.Color(0, 0, 0));
+        Segunda.setText("Segunda");
+        jPanel1.add(Segunda, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 110, -1));
+
+        Tres_Letras.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Tres_Letras.setForeground(new java.awt.Color(0, 0, 0));
+        Tres_Letras.setText("Abreviatura 3 Letras");
+        jPanel1.add(Tres_Letras, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 500, 220, -1));
+
+        Abreviatura.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        Abreviatura.setForeground(new java.awt.Color(0, 0, 0));
+        Abreviatura.setText("Abreviatura");
+        jPanel1.add(Abreviatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, 130, -1));
+
+        una_letras1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        una_letras1.setForeground(new java.awt.Color(0, 0, 0));
+        una_letras1.setText("1 letras");
+        jPanel1.add(una_letras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 560, 130, -1));
+
+        Exit.setBackground(new java.awt.Color(204, 0, 0));
+        Exit.setText("X");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 70, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 680));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BackActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +201,30 @@ public class Ver_Lista_de_ARN extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ver_Lista_de_ARN().setVisible(true);
+                new Ver_Lista_de_ARN(menu).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Abreviatura;
+    private javax.swing.JLabel Aminoacido;
+    private javax.swing.JButton Back;
+    private javax.swing.JLabel Bases;
+    private javax.swing.JButton Exit;
+    private javax.swing.JLabel Primera;
+    private javax.swing.JLabel Segunda;
+    private javax.swing.JLabel Tercera;
+    private javax.swing.JLabel Tres_Letras;
+    private javax.swing.JLabel Una_Letras;
+    private javax.swing.JLabel aminoacido;
+    private javax.swing.JLabel frecuencia_tripleta;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel segunda;
+    private javax.swing.JLabel tercera;
+    private javax.swing.JLabel tres_letras;
+    private javax.swing.JLabel una_letras1;
     // End of variables declaration//GEN-END:variables
 }
