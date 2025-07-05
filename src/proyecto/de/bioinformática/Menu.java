@@ -7,7 +7,8 @@ import Estructura_de_datos.ArbolBinarioDeBusqueda;
 import Estructura_de_datos.patronADN;
 import Estructura_de_datos.Hashtable;
 /**
- *
+ * Ventana principal del sistema que gestiona la carga de ADN y despliega opciones de análisis.
+ * Coordina la interacción entre la tabla hash y el árbol binario de búsqueda.
  * @author Diego Arreaza y Vyckhy Sarmiento
  */
 public class Menu extends javax.swing.JFrame {
@@ -29,9 +30,9 @@ public class Menu extends javax.swing.JFrame {
      * ArbolBinarioDeBusqueda que almacena los patrones ADN, ordenados por frecuencia.
      */
     private ArbolBinarioDeBusqueda arbol;
-    /**
-     * Creates new form Ventana1
-     * @param cadenaADN
+     /**
+     * Inicializa las estructuras de datos con la cadena de ADN proporcionada.
+     * @param cadenaADN Cadena de nucleótidos (A, T, C, G) a analizar
      */
     public Menu(String cadenaADN) {
         this.cadena = cadenaADN;
@@ -119,8 +120,11 @@ public class Menu extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Lista_Tripletas.setBackground(new java.awt.Color(255, 255, 255));
+        Lista_Tripletas.setForeground(new java.awt.Color(0, 0, 0));
         Lista_Tripletas.setText("Ver Lista de las Tripletas que forman a la cadena");
         Lista_Tripletas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +133,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel1.add(Lista_Tripletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 530, 70));
 
+        Ver_Max_Min.setBackground(new java.awt.Color(255, 255, 255));
+        Ver_Max_Min.setForeground(new java.awt.Color(0, 0, 0));
         Ver_Max_Min.setText("Ver a la Tripleta con el Maximo o el Minimo de frecuencia en la cadena");
         Ver_Max_Min.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +143,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel1.add(Ver_Max_Min, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 530, 70));
 
+        Lista_Aminoacidos.setBackground(new java.awt.Color(255, 255, 255));
+        Lista_Aminoacidos.setForeground(new java.awt.Color(0, 0, 0));
         Lista_Aminoacidos.setText("Ver Lista de los Aminoacidos");
         Lista_Aminoacidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +153,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel1.add(Lista_Aminoacidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 530, 70));
 
+        Buscar_Tripleta_Espefica.setBackground(new java.awt.Color(255, 255, 255));
+        Buscar_Tripleta_Espefica.setForeground(new java.awt.Color(0, 0, 0));
         Buscar_Tripleta_Espefica.setText("Buscar Tripleta especifica");
         Buscar_Tripleta_Espefica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

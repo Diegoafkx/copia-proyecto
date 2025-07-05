@@ -4,14 +4,21 @@
  */
 package proyecto.de.bioinformática;
 
+import Estructura_de_datos.patronADN;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 /**
- *
- * @author Windows 10 Pro
+ * Ventana para visualizar detalles de un triplete de ADN específico.
+ * Muestra frecuencia y posiciones de aparición en la secuencia cargada.
+ * @author Diego Arreaza y Vyckhy Sarmiento
+ * @see Menu
+ * @see Hashtable
  */
 public class Ver_Triplete_Especifico extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Ver_Triplete_Especifico.class.getName());
-    
+    private DefaultListModel<String> listModel;
     private static Menu menu;
     /**
      * Creates new form Ver_Triplete_Especifico
@@ -19,11 +26,46 @@ public class Ver_Triplete_Especifico extends javax.swing.JFrame {
     public Ver_Triplete_Especifico(Menu m) {
         menu  = m;
         initComponents();
-        tripleta.setText("");
+        listModel = new DefaultListModel<>();
+        jList1.setModel(listModel);
+        cargarTodosLosTripletes();
+         tripleta.setText("Seleccione un triplete");
         frecuencia_tripleta.setText("");
-        posiciones_tripleta.setText("");
+        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[]{"Posiciones"}));
+        this.setVisible(true);
     }
 
+    
+     private void cargarTodosLosTripletes() {
+        listModel.clear();
+        patronADN[] patrones = menu.get_tablahash().getAllPatrones();
+        
+        for (patronADN patron : patrones) {
+            if (patron != null) {
+                listModel.addElement(patron.getTriplete() + " | Frecuencia: " + patron.getFrecuencia());
+            }
+        }
+    }
+     
+     private void mostrarDetalleTriplete() {
+        String seleccionado = jList1.getSelectedValue();
+        if (seleccionado != null) {
+            String tripleteSeleccionado = seleccionado.split(" \\| ")[0];
+            patronADN patron = menu.get_tablahash().get(tripleteSeleccionado);
+            
+            if (patron != null) {
+                tripleta.setText(patron.getTriplete());
+                frecuencia_tripleta.setText(String.valueOf(patron.getFrecuencia()));
+                
+                // Cargar posiciones en el ComboBox
+                DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<>();
+                for (int i = 0; i < patron.getPosiciones().getSize(); i++) {
+                    comboModel.addElement(String.valueOf(patron.getPosiciones().AccederAlValor(i).getData()));
+                }
+                jComboBox1.setModel(comboModel);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,11 +83,13 @@ public class Ver_Triplete_Especifico extends javax.swing.JFrame {
         Frecuencia = new javax.swing.JLabel();
         frecuencia_tripleta = new javax.swing.JLabel();
         Posiciones = new javax.swing.JLabel();
-        posiciones_tripleta = new javax.swing.JLabel();
         Tripleta = new javax.swing.JLabel();
         tripleta = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -68,49 +112,54 @@ public class Ver_Triplete_Especifico extends javax.swing.JFrame {
         });
         jPanel1.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 650, 80, -1));
 
-        jList1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jList1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 140, 520));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 280, 520));
 
         Frecuencia.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        Frecuencia.setForeground(new java.awt.Color(0, 0, 0));
         Frecuencia.setText("Frecuencia:");
-        jPanel1.add(Frecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 220, -1));
+        jPanel1.add(Frecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 220, 30));
 
         frecuencia_tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        frecuencia_tripleta.setForeground(new java.awt.Color(0, 0, 0));
-        frecuencia_tripleta.setText("Aqui saldra la frecuencia");
-        jPanel1.add(frecuencia_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 370, -1));
+        frecuencia_tripleta.setText("x");
+        jPanel1.add(frecuencia_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 130, 30));
 
         Posiciones.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        Posiciones.setForeground(new java.awt.Color(0, 0, 0));
         Posiciones.setText("Posiciones:");
-        jPanel1.add(Posiciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 220, -1));
-
-        posiciones_tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        posiciones_tripleta.setForeground(new java.awt.Color(0, 0, 0));
-        posiciones_tripleta.setText("Aqui saldra las posiciones");
-        jPanel1.add(posiciones_tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 370, -1));
+        jPanel1.add(Posiciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 220, 30));
 
         Tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        Tripleta.setForeground(new java.awt.Color(0, 0, 0));
         Tripleta.setText("Tripleta Seleccionado:");
-        jPanel1.add(Tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 250, -1));
+        jPanel1.add(Tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 250, 30));
 
         tripleta.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        tripleta.setForeground(new java.awt.Color(0, 0, 0));
-        tripleta.setText("Aqui saldra la tripleta");
-        jPanel1.add(tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 370, -1));
+        tripleta.setText("x");
+        jPanel1.add(tripleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 120, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 680));
+        jComboBox1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aqui saldran las posiciones" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 330, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 680));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
@@ -123,6 +172,17 @@ public class Ver_Triplete_Especifico extends javax.swing.JFrame {
         this.dispose();
         menu.back();
     }//GEN-LAST:event_BackActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+         if (!evt.getValueIsAdjusting()) {
+        mostrarDetalleTriplete(); 
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList1ValueChanged
 
     /**
      * @param args the command line arguments
@@ -156,10 +216,10 @@ public class Ver_Triplete_Especifico extends javax.swing.JFrame {
     private javax.swing.JLabel Posiciones;
     private javax.swing.JLabel Tripleta;
     private javax.swing.JLabel frecuencia_tripleta;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel posiciones_tripleta;
     private javax.swing.JLabel tripleta;
     // End of variables declaration//GEN-END:variables
 }

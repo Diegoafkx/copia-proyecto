@@ -4,9 +4,16 @@
  */
 package proyecto.de.bioinformática;
 
+import Estructura_de_datos.Lista;
+import Estructura_de_datos.patronADN;
+import javax.swing.DefaultListModel;
+
 /**
- *
+ * Ventana que lista todos los tripletes de ADN ordenados por frecuencia.
+ * Permite visualizar las posiciones de cada patrón en la secuencia.
  * @author Diego Arreaza y Vyckhy Sarmiento
+ * @see ArbolBinarioDeBusqueda
+ * @see Lista
  */
     public class Lista_de_Tripletas extends javax.swing.JFrame {
     
@@ -18,22 +25,34 @@ package proyecto.de.bioinformática;
     public Lista_de_Tripletas(Menu m) {
         menu = m;
         initComponents();
+        this.actualizar_lista();
     }
     
-//    private void cargarListaTripletas() {
-//    ArbolBinarioDeBusqueda arbol = menu.get_Arbol(); // Obtiene el árbol desde Menu
-//    Lista patronesOrdenados = arbol.recorridoInOrdenParaGUI(); // Recorre in-orden
-//    
-//    // Convierte la Lista a un arreglo para el JList
-//    DefaultListModel<String> modelo = new DefaultListModel<>();
-//    Nodo actual = patronesOrdenados.getpFirst();
-//    while (actual != null) {
-//        modelo.addElement(actual.getData().toString()); // Añade cada patrón como String
-//        actual = actual.getpNext();
-//    }
-//    
-//    jList1.setModel(modelo); // Asigna el modelo al JList
-//}
+    private void actualizar_lista(){
+       DefaultListModel<String> model = new DefaultListModel<>();
+        Lista patrones = menu.get_Arbol().recorridoInOrden();
+        
+        for (int i = 0; i <patrones.getSize();i++) {
+            if (patrones.AccederAlValor(i) != null) {
+                model.addElement("Tripleta: "+((patronADN)patrones.AccederAlValor(i).getData()).getTriplete() + " | Frecuencia: " + ((patronADN)patrones.AccederAlValor(i).getData()).getFrecuencia());
+            }
+        }
+        jList1.setModel(model);
+    }
+    
+    private void mostrar_posicion(){
+        String seleccionado = (String) jList1.getSelectedValue();
+        if (seleccionado != null) {
+            String triplete = seleccionado.split(" | ")[1];
+            patronADN patron = menu.get_tablahash().get(triplete);
+            Lista aux = patron.getPosiciones();
+            String[] posiciones = new String[aux.getSize()];
+            for (int i = 0; i < aux.getSize(); i++) {
+                posiciones[i] = Integer.toString((int) aux.AccederAlValor(i).getData());
+            }
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(posiciones));
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +66,9 @@ package proyecto.de.bioinformática;
         jPanel1 = new javax.swing.JPanel();
         Exit = new javax.swing.JButton();
         Back = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
@@ -68,6 +90,8 @@ package proyecto.de.bioinformática;
         });
         jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 70, -1));
 
+        Back.setBackground(new java.awt.Color(255, 255, 255));
+        Back.setForeground(new java.awt.Color(0, 0, 0));
         Back.setText("Regresar");
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,15 +100,43 @@ package proyecto.de.bioinformática;
         });
         jPanel1.add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 650, 80, -1));
 
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Posiciones" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 220, -1));
+
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("\t---INFORMACION---\n  Aqui el usuario podra observar la frecuencia y la \n     posición que abarca todas las tripletas en la \n\t          cadena\n\n\t      ---PASOS---\n   Para ver las posiciones de la tripleta el usuario \ntendra que selecionar el que desea observar de la\n       lista, ya apreceran todas las posicones \n");
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 340, 210));
+
+        jList1.setBackground(new java.awt.Color(255, 255, 255));
         jList1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jList1.setForeground(new java.awt.Color(0, 0, 0));
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "tripleta | Frecuencia | Posicion", "tripleta2 | Frecuencia | Posicion", "tripleta3 | Frecuencia | Posicion" };
+            String[] strings = { "tripleta | Frecuencia | ", "tripleta2 | Frecuencia | ", "tripleta3 | Frecuencia |" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 510, 520));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 280, 440));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -102,6 +154,17 @@ package proyecto.de.bioinformática;
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        // TODO add your handling code here:
+        if (!evt.getValueIsAdjusting()) {
+        this.mostrar_posicion();
+        }
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,8 +205,11 @@ package proyecto.de.bioinformática;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Exit;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

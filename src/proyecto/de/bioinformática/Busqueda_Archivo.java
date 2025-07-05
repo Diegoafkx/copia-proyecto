@@ -13,10 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 /**
- *
+ * Ventana para seleccionar y cargar archivos de texto con secuencias de ADN.
+ * Proporciona una interfaz para buscar archivos y pasar la cadena de ADN al menú principal.
  * @author Diego Arreaza y Vyckhy Sarmiento
+ * @see Menu
  */
 public class Busqueda_Archivo extends javax.swing.JFrame {
     
@@ -46,12 +47,15 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
         getDireccion = new javax.swing.JTextField();
         Siguiente = new javax.swing.JButton();
         Exit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Buscar.setText("Buscar");
@@ -60,15 +64,16 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, -1));
 
         getDireccion.setEditable(false);
+        getDireccion.setBackground(new java.awt.Color(255, 255, 255));
         getDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getDireccionActionPerformed(evt);
             }
         });
-        jPanel1.add(getDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 220, -1));
+        jPanel1.add(getDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 250, -1));
 
         Siguiente.setText("Siguiente");
         Siguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -76,9 +81,9 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
                 SiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
+        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
 
-        Exit.setBackground(new java.awt.Color(255, 0, 51));
+        Exit.setBackground(new java.awt.Color(255, 0, 0));
         Exit.setText("X");
         Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +91,16 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 70, -1));
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setRows(5);
+        jTextArea1.setText("     Bienvenido, porfavor ingrese la direccion del \n                            archivo Cadena.txt\n\n\t      ---PASOS---\nHaga click en el boton buscar, saldra una nueva\nventana, tendra que dirigirse hacia la carpeta de \n      la aplicacion y hacer selecionar el archivo\n   Cadena.txt. Luego presione el boton siguiente\n                                 para continuar.");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 290, 170));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -186,5 +201,7 @@ public class Busqueda_Archivo extends javax.swing.JFrame {
     private javax.swing.JButton Siguiente;
     private javax.swing.JTextField getDireccion;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

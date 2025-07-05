@@ -4,9 +4,15 @@
  */
 package proyecto.de.bioinformática;
 
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
- *
- * @author Windows 10 Pro
+ * Ventana de reporte técnico que muestra colisiones en la tabla hash.
+ * Genera estadísticas sobre el rendimiento de la estructura de datos.
+ * @author Diego Arreaza y Vyckhy Sarmiento
+ * @see Hashtable
  */
 public class Colisiones extends javax.swing.JFrame {
     
@@ -18,9 +24,13 @@ public class Colisiones extends javax.swing.JFrame {
     public Colisiones(Menu m) {
         menu = m;
         initComponents();
+        mostrarReporte();
         this.setVisible(true);
     }
-
+     private void mostrarReporte() {
+    String reporte = menu.get_tablahash().generarReporteColisiones();
+    jTextArea2.setText(reporte);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,12 +43,15 @@ public class Colisiones extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Exit = new javax.swing.JButton();
         Next = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Exit.setBackground(new java.awt.Color(255, 0, 0));
@@ -58,7 +71,17 @@ public class Colisiones extends javax.swing.JFrame {
         });
         jPanel1.add(Next, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 500));
+        jTextArea2.setEditable(false);
+        jTextArea2.setBackground(new java.awt.Color(204, 204, 204));
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea2.setRows(5);
+        jScrollPane3.setViewportView(jTextArea2);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 480, 380));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 490));
 
         pack();
         setLocationRelativeTo(null);
@@ -104,5 +127,7 @@ public class Colisiones extends javax.swing.JFrame {
     private javax.swing.JButton Exit;
     private javax.swing.JButton Next;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 }
